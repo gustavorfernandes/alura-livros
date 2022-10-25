@@ -2,20 +2,36 @@ import { livros } from "../models/Livro.js";
 
 export class LivroController {
   static listarLivros(_, res) {
-    livros.find((_, livros) => {
-      res.status(200).json(livros);
-    });
+    livros.find()
+      .populate("autor")
+      .exec((_, livros) => {
+        res.status(200).json(livros);
+      });
   };
 
-  static pesquisarLivro(req, res) {
+  static listarLivroPorId(req, res) {
     const id = req.params.id;
-    livros.findById(id, (err, livros) => {
+    livros.findById(id)
+      .populate("autor", "nome")
+      .exec((err, livros) => {
+        if (!err) {
+          res.status(200).json(livros);
+        } else {
+          res.status(500).send({ message: err.message });
+        }
+      });
+  };
+
+  static listarLivroPorEditora(req, res) {
+    const editora = req.query.editora;
+
+    livros.find({ "editora": editora }, {}, (err, livros) => {
       if (!err) {
-        res.status(200).json(livros);
-      } else {
-        res.status(500).send({ message: err.message });
-      }
-    });
+          res.status(200).json(livros);
+        } else {
+          res.status(500).send({ message: err.message });
+        }
+    })
   };
 
   static cadastrarLivro(req, res) {
