@@ -7,15 +7,15 @@ Simple CRUD Rest API Application with Express and MongoDB.
 Endpoints: 
 
 ```bash
-http://localhost:3000/
-http://localhost:3000/livros/
-http://localhost:3000/autores/
+https://alura-livros.herokuapp.com/
+https://alura-livros.herokuapp.com/livros/
+https://alura-livros.herokuapp.com/autores
 ```
 
 Script to run the server:
 
 ```bash
-npm run dev
+npm run start
 ```
 
 ## Other informations
