@@ -5,10 +5,10 @@ import { autoresRouter } from "./autoresRoutes.js";
 export const routes = app => {
   app.route("/").get((req, res) => {
     res.status(200).send({
-      server: "Livraria Alura",
+      server: "Alura Livros",
       endpoints: {
-        livros: "/livros",
-        autores: "/autores"
+        livros: "https://alura-livros.herokuapp.com/livros",
+        autores: "https://alura-livros.herokuapp.com/autores"
       }
     })
   })
